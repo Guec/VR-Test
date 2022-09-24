@@ -40,6 +40,7 @@ public class WhiteboardMarker : MonoBehaviour
             //if is whiteboard
             if (_touch.transform.CompareTag("Whiteboard"))
             {
+
                 // if not
                 if (_whiteboard == null)
                 {
@@ -49,15 +50,18 @@ public class WhiteboardMarker : MonoBehaviour
                 //set marker touch position
                 _touchPos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
 
+                //get postiton of ray cast, multiple by whiteboard pixels
                 var x = (int)(_touchPos.x * _whiteboard.textureSize.x - (_penSize / 2));
                 var y = (int)(_touchPos.y * _whiteboard.textureSize.y - (_penSize / 2));
 
                 if (y < 0 || y > _whiteboard.textureSize.y || x < 0 || x > _whiteboard.textureSize.x) return;
                 
+                //draw on texture + interp bteween dots
                 if (_touchedLastFrame)
                     {
                         //draw on texture
                         _whiteboard.texture.SetPixels(x, y, _penSize, _penSize, _colors);
+                        print("draw");
 
                         //interp between points when drawing
                         for (float f = 0.01f; f < 1.00f; f += 0.01f)
