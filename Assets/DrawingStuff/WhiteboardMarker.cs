@@ -58,10 +58,11 @@ public class WhiteboardMarker : MonoBehaviour
                 
                 //draw on texture + interp bteween dots
                 if (_touchedLastFrame)
-                    {
+                    {   
                         //draw on texture
                         _whiteboard.texture.SetPixels(x, y, _penSize, _penSize, _colors);
-                        print("draw");
+                        //tell whiteboard it has been drawn on
+                        _whiteboard.GetComponent<Whiteboard>().drawn = true;
 
                         //interp between points when drawing
                         for (float f = 0.01f; f < 1.00f; f += 0.01f)

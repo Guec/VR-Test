@@ -6,6 +6,7 @@ public class Whiteboard : MonoBehaviour
 {
     public Texture2D texture;
     public Vector2 textureSize = new Vector2(2048, 2048);
+    public bool drawn;
 
     // Start is called before the first frame update
     void Start()
@@ -13,6 +14,11 @@ public class Whiteboard : MonoBehaviour
         var r = GetComponent<Renderer>();
         texture = new Texture2D((int)textureSize.x, (int)textureSize.y);
         r.material.mainTexture = texture;
+    }
+
+    private void Update()
+    {
+        
     }
 
 }
